@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
+        android:text="0"
         android:paddingTop="40dp"
         android:paddingRight="10dp"
         android:textColor="@color/white"

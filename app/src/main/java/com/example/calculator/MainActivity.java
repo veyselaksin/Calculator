@@ -13,12 +13,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity {
     TextView input,signbox;
     View views;
     String sign,value1,value2,SpecialFunction;
     Double num1,num2,result;
     boolean hasdot, isSpecialFunctionOn;
+    DecimalFormat decimalFormat=new DecimalFormat("#.######");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,50 +35,90 @@ public class MainActivity extends AppCompatActivity {
     }
     @SuppressLint("SetTextI18n")
     public void button0(View view) {
-        input.setText(input.getText()+"0");
+        if (!input.getText().equals("0"))
+            input.setText(input.getText()+"0");
+        else
+            input.setText("0");
     }
     @SuppressLint("SetTextI18n")
     public void button1(View view) {
-        input.setText(input.getText()+"1");
+        if(!input.getText().equals("0"))
+            input.setText(input.getText()+"1");
+        else{
+            input.setText("1");
+        }
+
     }
     @SuppressLint("SetTextI18n")
     public void button2(View view) {
-        input.setText(input.getText()+"2");
+        if(!input.getText().equals("0"))
+            input.setText(input.getText()+"2");
+        else{
+            input.setText("2");
+        }
     }
     @SuppressLint("SetTextI18n")
     public void button3(View view) {
-        input.setText(input.getText()+"3");
+        if(!input.getText().equals("0"))
+            input.setText(input.getText()+"3");
+        else{
+            input.setText("3");
+        }
     }
     @SuppressLint("SetTextI18n")
     public void button4(View view) {
-        input.setText(input.getText()+"4");
+        if(!input.getText().equals("0"))
+            input.setText(input.getText()+"4");
+        else{
+            input.setText("4");
+        }
     }
     @SuppressLint("SetTextI18n")
     public void button5(View view) {
-        input.setText(input.getText()+"5");
+        if(!input.getText().equals("0"))
+            input.setText(input.getText()+"5");
+        else{
+            input.setText("5");
+        }
     }@SuppressLint("SetTextI18n")
     public void button6(View view) {
-        input.setText(input.getText()+"6");
+        if(!input.getText().equals("0"))
+            input.setText(input.getText()+"6");
+        else{
+            input.setText("6");
+        }
     }
     @SuppressLint("SetTextI18n")
     public void button7(View view) {
-        input.setText(input.getText()+"7");
+        if(!input.getText().equals("0"))
+            input.setText(input.getText()+"7");
+        else{
+            input.setText("7");
+        }
     }
     @SuppressLint("SetTextI18n")
     public void button8(View view) {
-        input.setText(input.getText()+"8");
+        if(!input.getText().equals("0"))
+            input.setText(input.getText()+"8");
+        else{
+            input.setText("8");
+        }
     }
     @SuppressLint("SetTextI18n")
     public void button9(View view) {
-        input.setText(input.getText()+"9");
+        if(!input.getText().equals("0"))
+            input.setText(input.getText()+"9");
+        else{
+            input.setText("9");
+        }
     }
     @SuppressLint("SetTextI18n")
     public void buttonPi(View view) {
-        input.setText(Math.PI+"");
+        input.setText(decimalFormat.format(Math.PI));
     }
     @SuppressLint("SetTextI18n")
     public void buttonE(View view) {
-        input.setText(Math.exp(1)+"");
+        input.setText(decimalFormat.format(Math.exp(1)));
     }
 
     @SuppressLint("SetTextI18n")
@@ -173,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                 case "log":
                     value1=input.getText().toString();
                     num1=Double.parseDouble(value1);
-                    input.setText(Math.log10(num1)+"");
+                    input.setText(decimalFormat.format(Math.log10(num1)));
                     SpecialFunction=null;
                     isSpecialFunctionOn=false;
                     signbox.setText(null);
@@ -181,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
                 case "ln":
                     value1=input.getText().toString();
                     num1=Double.parseDouble(value1);
-                    input.setText(Math.log(num1)+"");
+                    input.setText(decimalFormat.format(Math.log(num1)));
                     SpecialFunction=null;
                     isSpecialFunctionOn=false;
                     signbox.setText(null);
@@ -217,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
                 case "sin":
                     value1=input.getText().toString();
                     num1=Double.parseDouble(value1);
-                    input.setText(Math.sin(num1)+"");
+                    input.setText(decimalFormat.format(Math.sin(num1)));
                     SpecialFunction=null;
                     isSpecialFunctionOn=false;
                     signbox.setText(null);
@@ -225,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
                 case "cos":
                     value1=input.getText().toString();
                     num1=Double.parseDouble(value1);
-                    input.setText(Math.cos(num1)+"");
+                    input.setText(decimalFormat.format(Math.cos(num1)));
                     SpecialFunction=null;
                     isSpecialFunctionOn=false;
                     signbox.setText(null);
@@ -233,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
                 case "tan":
                     value1=input.getText().toString();
                     num1=Double.parseDouble(value1);
-                    input.setText(Math.tan(num1)+"");
+                    input.setText(decimalFormat.format(Math.tan(num1)));
                     SpecialFunction=null;
                     isSpecialFunctionOn=false;
                     signbox.setText(null);
@@ -290,8 +333,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonDelete(View view){
-        if(input.getText().equals("")){
-            input.setText(null);
+        if(input.getText().equals("0")){
+            input.setText("0");
         }
         else{
             int len=input.getText().length();
@@ -299,15 +342,21 @@ public class MainActivity extends AppCompatActivity {
             if(s.charAt(len-1)=='.'){
                 hasdot=false;
                 input.setText(input.getText().subSequence(0,input.getText().length()-1));
+                if(input.getText().equals("")){
+                    input.setText("0");
+                }
             }
             else{
                 input.setText(input.getText().subSequence(0,input.getText().length()-1));
+                if(input.getText().equals("")){
+                    input.setText("0");
+                }
             }
         }
     }
 
     public void buttonClear(View view){
-       input.setText(null);
+       input.setText("0");
        signbox.setText(null);
        sign=null;
        value1=null;
